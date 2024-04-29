@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const { auth } = require('../middlware/auth.middleware');
 const { access } = require('../middlware/access.middleware');
 
+
 userRouter.get('/', auth,access('admin'),async (req,res)=>{
     const users = await UserModel.find();
     res.status(200).json(users)

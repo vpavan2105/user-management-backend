@@ -5,9 +5,6 @@ const {TaskModel} = require('../models/Task.model')
 
 const taskRouter = express.Router();
 
-
-
-
 taskRouter.get('/', auth , access('admin','manager') , async(req,res)=>{
     try{
         const tasks = await TaskModel.find();
@@ -73,7 +70,7 @@ taskRouter.patch('/updateTask/:id', auth,access('manager'), async(req,res) => {
     try{
         const {id} = req.params
 
-        const task = TaskModel.findByIdAndUpdate({id},req.body)
+        const task = TaskModel.findByIdAndUpdate(id,req.body)
         res.status(200).json({msg:"Task updated successfully"})
 
     }catch(err){
